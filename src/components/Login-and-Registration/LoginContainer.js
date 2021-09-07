@@ -1,19 +1,5 @@
-import logo from "../assets/logo.svg"; 
-import { Link } from "react-router-dom"
 import styled from 'styled-components';
-export default function Login() {
-    return (
-        <LoginContainer>
-            <img src={logo} alt="" />
-            <input type="text" placeholder="email"/> 
-            <input type="text" placeholder="senha"/> 
-            <Link to="/habitos" className="button-enter">
-                <span>Entrar</span>
-            </Link>
-            <Link to="/cadastro" className="link-to-registration">Não tem uma conta? cadastre!</Link>
-        </LoginContainer>
-    )
-}
+
 const blueApp = '#52B6FF';
 const LoginContainer = styled.div`
     display: flex;
@@ -31,10 +17,10 @@ const LoginContainer = styled.div`
         height: 45px;
         font-size: 20px;
         margin-bottom: 6px;
+        border-radius: 5px;
     }
     input {
         border: 1px solid #D4D4D4;
-        border-radius: 5px;
         padding-left: 10px;
     }
     .button-enter {
@@ -49,5 +35,5 @@ const LoginContainer = styled.div`
         margin-top: 24px;
         color: ${blueApp};
     }
-
 `;
+export default LoginContainer;
