@@ -1,6 +1,8 @@
-import Login from "./Login-and-Registration/Login";
-import Registration from "./Login-and-Registration/Registration.js";
 import { Route, Switch } from "react-router-dom";
+import Login from "./Login-and-Registration-Page/Login";
+import Registration from "./Login-and-Registration-Page/Registration.js";
+import Habits from "./Habits-Page/Habits.js"
+
 export default function Routers() {
     return (
         <Switch>
@@ -9,6 +11,9 @@ export default function Routers() {
             </Route>
             <Route path="/cadastro" exact>
                 <Registration />
+            </Route>
+            <Route path="/habitos" exact>
+                <Habits />
             </Route>
         </Switch>
     )

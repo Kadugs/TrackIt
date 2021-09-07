@@ -9,14 +9,14 @@ export default function Registration() {
         <LoginContainer>
             <img src={logo} alt="" />
             {
-                inputPlaceholder.map(item => (
-                    <InputText placeholder={item}/> 
+                inputPlaceholder.map((item, index) => (
+                    <InputText placeholder={item} key={index} /> 
                 ))
             }
             <Link to="/habitos" className="button-enter">
                 <span>Cadastrar</span>
             </Link>
-            <Link to="/cadastro" className="link-to-registration">Já tem uma conta? Faça login!</Link>
+            <Link to="/" className="link-to-registration">Já tem uma conta? Faça login!</Link>
         </LoginContainer>
     )
 }

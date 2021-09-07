@@ -9,8 +9,8 @@ export default function Login() {
         <LoginContainer>
             <img src={logo} alt="" />
             {
-                inputPlaceholder.map(item => (
-                    <InputText placeholder={item}/> 
+                inputPlaceholder.map((item, index) => (
+                    <InputText placeholder={item} key={index} /> 
                 ))
             }
             <Link to="/habitos" className="button-enter">
