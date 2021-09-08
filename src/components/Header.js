@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 export default function Header() {
     const location = useLocation().pathname;
-    console.log(location);
     if(location === '/' || location === '/cadastro') {
         return (
             <></>

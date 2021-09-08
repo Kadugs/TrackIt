@@ -2,13 +2,14 @@ import { BrowserRouter } from "react-router-dom";
 import Routers from "./components/Routers.js";
 import styled from "styled-components";
 import Header from "./components/Header.js";
-
+import Footer from "./components/Footer.js";
 export default function App() {
   return (
       <BrowserRouter>
         <Header />
           <ContainerApp>
             <Routers />
+            <Footer />
           </ContainerApp>
       </BrowserRouter>
   )
