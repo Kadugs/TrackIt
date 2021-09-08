@@ -33,7 +33,6 @@ const ContainerFooter = styled.div `
     font-size: 18px;
     font-family: 'Lexend Deca', sans-serif;
     color: ${blueApp};
-    font-weight: bold;
 
     div {
         background-color: ${blueApp};
