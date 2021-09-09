@@ -1,21 +1,49 @@
 import logo from '../../assets/logo.svg';
 import LoginContainer from './LoginContainer';
-import InputText from './InputText';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import URL_API from '../../services/URL_API'
+import axios from 'axios';
+import { useHistory } from 'react-router';
+
 
 export default function Registration() {
-    const inputPlaceholder = ['email', 'senha', 'nome', 'foto'];
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [image, setImage] = useState('');
+    const inputPlaceholder = [
+        {title: 'email', set: setEmail}, 
+        {title: 'senha', set: setPassword},
+        {title: 'nome', set: setName}, 
+        {title: 'foto', set: setImage} 
+    ];
+
+    const history = useHistory();
+    function sendRegistration() {
+        const signUpData = {
+            email: email,
+            name: name,
+            image: image,
+            password: password,
+        }
+
+        axios.post(`${URL_API}/auth/sign-up`, signUpData)
+         .then(history.push('/'))
+         .catch(alert("Erro! Veirifique os dados e tente novamente"))
+    }
+
     return (
         <LoginContainer>
             <img src={logo} alt="" />
             {
                 inputPlaceholder.map((item, index) => (
-                    <InputText placeholder={item} key={index} /> 
+                    <input type="text" placeholder={item.title} onChange={e => item.set(e.target.value)} key={index} />
                 ))
             }
-            <Link to="/habitos" className="button-enter">
+            <div onClick={sendRegistration} className="button-enter">
                 <span>Cadastrar</span>
-            </Link>
+            </div>
             <Link to="/" className="link-to-registration">Já tem uma conta? Faça login!</Link>
         </LoginContainer>
     )

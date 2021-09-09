@@ -1,16 +1,18 @@
 import logo from '../../assets/logo.svg'; 
 import LoginContainer from './LoginContainer';
-import InputText from './InputText';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function Login() {
-    const inputPlaceholder = ['email', 'senha'];
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const inputPlaceholder = [{title: 'email', set: setEmail}, {title: 'senha', set: setPassword}];
     return (
         <LoginContainer>
             <img src={logo} alt="" />
             {
                 inputPlaceholder.map((item, index) => (
-                    <InputText placeholder={item} key={index} /> 
+                    <input type="text" placeholder={item.title} onChange={e => item.set(e.target.value)} key={index} />
                 ))
             }
             <Link to="/habitos" className="button-enter">
