@@ -3,7 +3,7 @@ import Habit from './Habit'
 export default function Habits({ habits }) {
     return (
         <ContainerHabits>
-            <div className="my-habits">
+            <div className="title-page">
                 <span>Meus Hábitos</span>
                 <div className="button-plus">+</div>
             </div>
@@ -24,21 +24,20 @@ export default function Habits({ habits }) {
     )
 }
 
-const blueApp = '#52B6FF';
 const ContainerHabits = styled.div `
     background-color: #e5e5e5;
     width: 100vw;
     min-height: 90vh;
     padding: 28px 5vw 0 5vw;
 
-    .my-habits {
+    .title-page {
         display: flex;
         justify-content: space-between;
         font-size: 29px;
         color: #126BA5;
     }
     .button-plus {
-        background-color: ${blueApp};
+        background-color: #52B6FF;
         width: 40px;
         height: 35px;
         padding-bottom: 4px;
