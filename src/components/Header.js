@@ -1,8 +1,11 @@
-import image from '../assets/bob-esponja.png';
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
+import LoginContext from '../contexts/LoginContext';
+import { useContext } from 'react';
 
 export default function Header() {
+    const context = useContext(LoginContext);
+    console.log(context);
     const location = useLocation().pathname;
     if(location === '/' || location === '/cadastro') {
         return (
@@ -12,9 +15,8 @@ export default function Header() {
     return (
         <HeaderContainer>
             <span>TrackIt</span>
-            <img src={image} alt="" />
+            <img src={context.image} alt="" />
         </HeaderContainer>
-
     )
 }
 
@@ -37,6 +39,7 @@ const HeaderContainer = styled.div`
     img {
         width: 50px;
         height: 50px;
+        border-radius: 50%;
     }
 
 `;

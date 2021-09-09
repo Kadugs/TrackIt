@@ -21,16 +21,20 @@ export default function Registration() {
 
     const history = useHistory();
     function sendRegistration() {
-        const signUpData = {
+        const body = {
             email: email,
             name: name,
             image: image,
             password: password,
         }
 
-        axios.post(`${URL_API}/auth/sign-up`, signUpData)
-         .then(history.push('/'))
-         .catch(alert("Erro! Veirifique os dados e tente novamente"))
+        axios.post(`${URL_API}/auth/sign-up`, body)
+         .then((res) => {
+            history.push('/')
+            })
+         .catch((error) => {
+             alert("Erro! Verifique os dados e tente novamente");
+            })
     }
 
     return (
