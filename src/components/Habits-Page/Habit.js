@@ -22,7 +22,6 @@ const ContainerHabit = styled.div`
     padding: 13px 10px 15px 14px;
     margin-bottom: 10px;
     margin-top: 20px;
-
     .week-days {
         display: flex;
         margin-top: 8px;

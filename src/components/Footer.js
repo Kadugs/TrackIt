@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useLocation } from "react-router";
-
+import { Link } from "react-router-dom";
 export default function Footer() {
     const location = useLocation().pathname;
     if(location === '/' || location === '/cadastro') {
@@ -11,9 +11,9 @@ export default function Footer() {
     return(
         <ContainerFooter>
             <span>Hábitos</span>
-            <div>
+            <Link to ="/hoje" className="button-today">
                 <span>Hoje</span>
-            </div>
+            </Link>
             <span>Histórico</span>
         </ContainerFooter>
     );
@@ -34,7 +34,7 @@ const ContainerFooter = styled.div `
     font-family: 'Lexend Deca', sans-serif;
     color: ${blueApp};
 
-    div {
+    .button-today {
         background-color: ${blueApp};
         width: 90px;
         height: 90px;
@@ -44,5 +44,6 @@ const ContainerFooter = styled.div `
         justify-content: center;
         align-items: center;
         margin-bottom: 40px;
+        text-decoration: none;
     }
 `;
