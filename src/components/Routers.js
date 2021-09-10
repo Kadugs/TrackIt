@@ -4,7 +4,7 @@ import Registration from "./Login-and-Registration-Page/Registration.js";
 import Habits from "./Habits-Page/Habits.js"
 import Today from "./Today-Page/Today"
 
-export default function Routers({ habits }) {
+export default function Routers() {
     return (
         <Switch>
             <Route path="/" exact>
@@ -15,7 +15,6 @@ export default function Routers({ habits }) {
             </Route>
             <Route path="/habitos" exact>
                 <Habits 
-                    habits={habits}
                 />
             </Route>
             <Route path="/hoje" exact>

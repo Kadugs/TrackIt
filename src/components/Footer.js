@@ -10,7 +10,9 @@ export default function Footer() {
     }
     return(
         <ContainerFooter>
-            <span>Hábitos</span>
+            <Link to="/habitos">
+                <span>Hábitos</span>
+            </Link>
             <Link to ="/hoje" className="button-today">
                 <span>Hoje</span>
             </Link>
@@ -19,7 +21,6 @@ export default function Footer() {
     );
 }
 
-const blueApp = '#52B6FF';
 const ContainerFooter = styled.div `
     position: fixed;
     display: flex;
@@ -32,10 +33,10 @@ const ContainerFooter = styled.div `
     padding: 0 30px;
     font-size: 18px;
     font-family: 'Lexend Deca', sans-serif;
-    color: ${blueApp};
+    color: #52B6FF;
 
     .button-today {
-        background-color: ${blueApp};
+        background-color: #52B6FF;
         width: 90px;
         height: 90px;
         border-radius: 50%;
@@ -45,5 +46,9 @@ const ContainerFooter = styled.div `
         align-items: center;
         margin-bottom: 40px;
         text-decoration: none;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
     }
 `;

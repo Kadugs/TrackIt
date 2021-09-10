@@ -8,17 +8,6 @@ import LoginContext from "./contexts/LoginContext.js";
 import { useState } from "react"
 export default function App() {
   const [loginInfos, setLoginInfos] = useState({});
-  const habits = [
-    {
-      title: 'aiaiai aiaiaiaiai',
-      days: [false, true, true, false, false, true, false],
-    },
-    {
-      title: 'aiaiai aiaiaiaiai',
-      days: [false, true, true, false, false, true, false],
-    },
-  ]
-
 
   return (
     <SetLoginContext.Provider value={setLoginInfos}>
@@ -26,9 +15,7 @@ export default function App() {
       <BrowserRouter>
         <Header />
           <ContainerApp>
-            <Routers 
-              habits={habits}
-              />
+            <Routers />
             <Footer />
           </ContainerApp>
       </BrowserRouter>

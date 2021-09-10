@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Habit from './Habit'
-export default function Habits({ habits }) {
+export default function Habits() {
     return (
         <ContainerHabits>
             <div className="title-page">
@@ -9,7 +9,10 @@ export default function Habits({ habits }) {
             </div>
 
             <div>
-                {habits.length === 0 ? <p className="no-habits">
+            <p className="no-habits">
+                Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+            </p> 
+                {/* {habits.length === 0 ? <p className="no-habits">
                     Você não tem nenhum hábito 
                     cadastrado ainda. Adicione um hábito 
                     para começar a trackear!
@@ -18,7 +21,7 @@ export default function Habits({ habits }) {
                     habits.map((item, index) => (
                         <Habit key={index} item={item} />
                     ))    
-                    }
+                    } */}
             </div>
         </ContainerHabits>
     )
