@@ -49,7 +49,7 @@ export default function Registration() {
             {
                 inputPlaceholder.map((item, index) => (
                     <input 
-                        type="text" 
+                        type={item.title === 'senha' ? 'password' : 'text'}
                         placeholder={item.title} 
                         onChange={e => item.set(e.target.value)} 
                         key={index} disabled={isSendingLogin}

@@ -1,17 +1,22 @@
-import styled from 'styled-components'
-import Habit from './Habit'
+import styled from 'styled-components';
+import Habit from './Habit';
+import { useState } from 'react';
+import CreateHabit from './CreateHabit';
+
 export default function Habits() {
+    const [isCreateHabitOpen, setIsCreateHabitOpen] = useState(false);
     return (
         <ContainerHabits>
             <div className="title-page">
                 <span>Meus Hábitos</span>
-                <div className="button-plus">+</div>
+                <div className="button-plus" onClick={() => setIsCreateHabitOpen(true)}>+</div>
             </div>
 
             <div>
-            <p className="no-habits">
-                Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
-            </p> 
+                {isCreateHabitOpen ? (<CreateHabit />) : (<p></p>)}
+                <p className="no-habits">
+                    Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+                </p> 
                 {/* {habits.length === 0 ? <p className="no-habits">
                     Você não tem nenhum hábito 
                     cadastrado ainda. Adicione um hábito 

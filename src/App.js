@@ -3,15 +3,12 @@ import Routers from "./components/Routers.js";
 import styled from "styled-components";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
-import SetLoginContext from "./contexts/SetLoginContext.js";
 import LoginContext from "./contexts/LoginContext.js";
-import { useState } from "react"
+import { useState } from "react";
 export default function App() {
   const [loginInfos, setLoginInfos] = useState({});
-
   return (
-    <SetLoginContext.Provider value={setLoginInfos}>
-    <LoginContext.Provider value={loginInfos}>
+    <LoginContext.Provider value={{loginInfos, setLoginInfos}}>
       <BrowserRouter>
         <Header />
           <ContainerApp>
@@ -20,7 +17,6 @@ export default function App() {
           </ContainerApp>
       </BrowserRouter>
       </LoginContext.Provider>
-      </SetLoginContext.Provider>
   )
 }
 

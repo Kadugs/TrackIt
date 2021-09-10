@@ -7,7 +7,6 @@ export default function Today() {
         <ContainerToday>
             <p className="title-page">Segunda, 17/05</p>
             <p className="percent-complete">Nenhum hábito concluído ainda</p>
-            <TodayHabit />
         </ContainerToday>
     );
 }

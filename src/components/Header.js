@@ -4,8 +4,7 @@ import LoginContext from '../contexts/LoginContext';
 import { useContext } from 'react';
 
 export default function Header() {
-    const context = useContext(LoginContext);
-    console.log(context);
+    const {loginInfos} = useContext(LoginContext);
     const location = useLocation().pathname;
     if(location === '/' || location === '/cadastro') {
         return (
@@ -15,7 +14,7 @@ export default function Header() {
     return (
         <HeaderContainer>
             <span>TrackIt</span>
-            <img src={context.image} alt="" />
+            <img src={loginInfos.image} alt="" />
         </HeaderContainer>
     )
 }

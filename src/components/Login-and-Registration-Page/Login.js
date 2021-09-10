@@ -5,7 +5,7 @@ import logo from "../../assets/logo.svg";
 import LoginContainer from "./LoginContainer";
 import URL_API from "../../services/URL_API";
 import axios from "axios";
-import SetLoginContext from "../../contexts/SetLoginContext";
+import LoginContext from "../../contexts/LoginContext";
 import Loader from "react-loader-spinner";
 
 export default function Login() {
@@ -17,7 +17,7 @@ export default function Login() {
     { title: "senha", set: setPassword },
   ];
   const history = useHistory();
-  const context = useContext(SetLoginContext);
+  const {setLoginInfos} = useContext(LoginContext);
   function sendLogin() {
       setIsSending(true);
       const body = {
@@ -27,9 +27,9 @@ export default function Login() {
         axios
         .post(`${URL_API}/auth/login`, body)
         .then((res) => {
+          setLoginInfos(res.data);
           setIsSending(false);
-         context(res.data);
-         history.push("/hoje");
+          history.push("/hoje");
       })
       .catch((error) => {
         console.log(error);
@@ -43,7 +43,7 @@ export default function Login() {
       <img src={logo} alt="" />
       {inputPlaceholder.map((item, index) => (
         <input
-          type="text"
+          type={item.title === 'senha' ? 'password' : 'text'}
           placeholder={item.title}
           onChange={(e) => item.set(e.target.value)}
           key={index}
