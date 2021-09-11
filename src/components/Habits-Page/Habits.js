@@ -1,10 +1,27 @@
 import styled from 'styled-components';
 import Habit from './Habit';
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import CreateHabit from './CreateHabit';
+import URL_API from '../../services/URL_API';
+import axios from 'axios';
+import LoginContext from '../../contexts/LoginContext'
 
 export default function Habits() {
     const [isCreateHabitOpen, setIsCreateHabitOpen] = useState(false);
+    const [habits, setHabits] = useState([]);
+    const { loginInfos } = useContext(LoginContext);
+    useEffect(() => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${loginInfos.token}`,
+            }
+        }
+        axios.get(`${URL_API}/habits`, config)
+         .then(res => setHabits(res.data))
+         .catch(err => console.error(err))
+
+    }, [])
+
     return (
         <ContainerHabits>
             <div className="title-page">
@@ -13,11 +30,8 @@ export default function Habits() {
             </div>
 
             <div>
-                {isCreateHabitOpen ? (<CreateHabit />) : (<p></p>)}
-                <p className="no-habits">
-                    Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
-                </p> 
-                {/* {habits.length === 0 ? <p className="no-habits">
+                {isCreateHabitOpen ? (<CreateHabit setIsCreateHabitOpen={setIsCreateHabitOpen} />) : (<p></p>)}
+                 {habits.length === 0 ? <p className="no-habits">
                     Você não tem nenhum hábito 
                     cadastrado ainda. Adicione um hábito 
                     para começar a trackear!
@@ -26,7 +40,7 @@ export default function Habits() {
                     habits.map((item, index) => (
                         <Habit key={index} item={item} />
                     ))    
-                    } */}
+                    }
             </div>
         </ContainerHabits>
     )

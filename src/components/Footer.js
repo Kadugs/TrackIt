@@ -56,9 +56,6 @@ const ContainerFooter = styled.div `
         width: 90px;
         height: 90px;
         color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         margin-bottom: 40px;
         text-decoration: none;
     }

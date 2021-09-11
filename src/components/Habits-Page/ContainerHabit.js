@@ -9,16 +9,20 @@ const ContainerHabit = styled.div`
     font-size: 20px;
     color: #666666;
     padding: 20px;
-    height: 180px;
+    position: relative;
 
     input {
         width: 100%;
         height: 45px;
         border: 1px solid #d4d4d4;
         font-size: 20px;
-        color: #d4d4d4;
         padding-left: 11px;
         border-radius: 5px;
+        font-family: 'Lexend Deca', sans-serif;
+        color: #666666;
+    }
+    input::placeholder {
+        color: #d4d4d4;
     }
     .day {
         width: 30px;
@@ -42,27 +46,12 @@ const ContainerHabit = styled.div`
     .disabled {
         color: #d4d4d4;
     }
-    .buttons-create-habit {
-        display: flex;
-        align-items: center;
-        justify-content: end;
-        margin-top: 29px;
-    }
-    .cancel-habit {
-        font-size: 16px;
-        color: #52B6FF;
-    }
-    .create-habit {
-        font-size: 16px;
-        background-color: #52B6FF;
-        color: white;
-        border-radius: 5px;
-        width: 84px;
-        height: 35px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 23px;
+    .trash-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 13px;
+        height: 15px;
     }
 `;
 export default ContainerHabit;

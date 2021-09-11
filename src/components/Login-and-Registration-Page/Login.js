@@ -11,7 +11,7 @@ import Loader from "react-loader-spinner";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isSendingLogin, setIsSending] = useState(false);
+  const [isSendingLogin, setIsSendingLogin] = useState(false);
   const inputPlaceholder = [
     { title: "email", set: setEmail },
     { title: "senha", set: setPassword },
@@ -19,7 +19,7 @@ export default function Login() {
   const history = useHistory();
   const {setLoginInfos} = useContext(LoginContext);
   function sendLogin() {
-      setIsSending(true);
+      setIsSendingLogin(true);
       const body = {
           email: email,
           password: password,
@@ -28,18 +28,18 @@ export default function Login() {
         .post(`${URL_API}/auth/login`, body)
         .then((res) => {
           setLoginInfos(res.data);
-          setIsSending(false);
+          setIsSendingLogin(false);
           history.push("/hoje");
       })
       .catch((error) => {
         console.log(error);
-        setIsSending(false);
+        setIsSendingLogin(false);
         alert("Erro! Verifique os dados e tente novamente");
       });
   }
 
   return (
-    <LoginContainer>
+    <LoginContainer bgColor={isSendingLogin ? '#86CCFF' : '#52B6FF'}>
       <img src={logo} alt="" />
       {inputPlaceholder.map((item, index) => (
         <input

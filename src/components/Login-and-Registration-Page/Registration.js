@@ -13,7 +13,7 @@ export default function Registration() {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
-    const [isSendingLogin, setIsSending] = useState(false);
+    const [isSendingLogin, setIsSendingLogin] = useState(false);
 
     const inputPlaceholder = [
         {title: 'email', set: setEmail}, 
@@ -24,7 +24,7 @@ export default function Registration() {
 
     const history = useHistory();
     function sendRegistration() {
-        setIsSending(true);
+        setIsSendingLogin(true);
         const body = {
             email: email,
             name: name,
@@ -33,18 +33,18 @@ export default function Registration() {
         }
 
         axios.post(`${URL_API}/auth/sign-up`, body)
-         .then((res) => {
-            setIsSending(false);
+         .then(() => {
+            setIsSendingLogin(false);
             history.push('/')
             })
-         .catch((error) => {
-            setIsSending(false);
+         .catch(() => {
+            setIsSendingLogin(false);
              alert("Erro! Verifique os dados e tente novamente");
             })
     }
 
     return (
-        <LoginContainer>
+        <LoginContainer bgColor={isSendingLogin ? '#86CCFF' : '#52B6FF'}>
             <img src={logo} alt="" />
             {
                 inputPlaceholder.map((item, index) => (
