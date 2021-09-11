@@ -14,9 +14,9 @@ export default function CreateHabit() {
                         className={selectedDays.includes(index + 1) ? 'day enabled' : 'day disabled'}>{day}</div>
                     ))}
             </div>
-            <div>
-                <div onClick={() => {}} >Cancelar</div>
-                <div onClick={() => {}} >Salvar</div>
+            <div className="buttons-create-habit">
+                <div className="cancel-habit"onClick={() => {}} >Cancelar</div>
+                <div className="create-habit" onClick={() => {}} >Salvar</div>
             </div>
         </ContainerHabit>
     );

@@ -31,5 +31,25 @@ color: #666666;
 .disabled {
     color: #d4d4d4;
 }
+.buttons-create-habit {
+    display: flex;
+    align-items: center;
+}
+.cancel-habit {
+    font-size: 16px;
+    color: #52B6FF;
+}
+.create-habit {
+    font-size: 16px;
+    background-color: #52B6FF;
+    color: white;
+    border-radius: 5px;
+    width: 84px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 16px 16px 23px;
+}
 `;
 export default ContainerHabit;
