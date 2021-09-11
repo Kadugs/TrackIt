@@ -5,6 +5,7 @@ export default function CreateHabit() {
     const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
     const [selectedDays, setSelectedDays] = useState([]);
     const [habitName, setHabitName] = useState("");
+    console.log(selectedDays)
     return (
         <ContainerHabit>
             <input type="text" placeholder="nome do hábito" onChange={(e) => setHabitName(e.target.value)}/>
