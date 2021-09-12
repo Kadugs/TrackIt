@@ -29,18 +29,22 @@ export default function CreateHabit(
             name: habitName,
             days: selectedDays,
         }
-        axios.post(`${URL_API}/habits`, body, config)
-         .then( () => {
-            setIsCreateHabitOpen(false);
-            setHabitName("");
-            setSelectedDays([]);
-            setIsSendingHabit(false);
-            renderHabits();
-         })
-         .catch( () => {
-            alert("Erro! Tente novamente");
-            setIsSendingHabit(false);
-         })
+        if(habitName.length !== 0 && selectedDays.length !== 0) {
+            axios.post(`${URL_API}/habits`, body, config)
+            .then( () => {
+                setIsCreateHabitOpen(false);
+                setHabitName("");
+                setSelectedDays([]);
+                setIsSendingHabit(false);
+                renderHabits();
+            })
+            .catch( () => {
+                alert("Erro! Tente novamente");
+                setIsSendingHabit(false);
+            })
+        } else {
+            alert("Por favor, preencha todos os campos");
+        }
     }
 
     return (

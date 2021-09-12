@@ -66,6 +66,7 @@ const ContainerHabits = styled.div `
     width: 100vw;
     min-height: 90vh;
     padding: 28px 5vw 0 5vw;
+    padding-bottom: 100px;
 
     .title-page {
         display: flex;
