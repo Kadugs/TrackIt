@@ -34,6 +34,7 @@ const ContainerHabit = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
     }
     .week-days {
         display: flex;
@@ -47,6 +48,7 @@ const ContainerHabit = styled.div`
         color: #d4d4d4;
     }
     .trash-icon {
+        cursor: pointer;
         position: absolute;
         top: 10px;
         right: 10px;

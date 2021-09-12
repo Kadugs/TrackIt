@@ -39,6 +39,7 @@ export default function Footer() {
 }
 
 const ContainerFooter = styled.div `
+    z-index: 1;
     position: fixed;
     display: flex;
     bottom: 0;

@@ -6,10 +6,16 @@ import axios from 'axios'
 import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 
-export default function CreateHabit({setIsCreateHabitOpen}) {
+export default function CreateHabit(
+    {
+        setIsCreateHabitOpen, 
+        renderHabits, 
+        habitName, 
+        setHabitName, 
+        selectedDays, 
+        setSelectedDays
+    }) {
     const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-    const [selectedDays, setSelectedDays] = useState([]);
-    const [habitName, setHabitName] = useState("");
     const [isSendingHabit, setIsSendingHabit] = useState(false);
     const { loginInfos } = useContext(LoginContext);
     function sendHabit() {
@@ -25,11 +31,13 @@ export default function CreateHabit({setIsCreateHabitOpen}) {
         }
         axios.post(`${URL_API}/habits`, body, config)
          .then( () => {
+            setIsCreateHabitOpen(false);
             setHabitName("");
             setSelectedDays([]);
             setIsSendingHabit(false);
+            renderHabits();
          })
-         .catch(error => {
+         .catch( () => {
             alert("Erro! Tente novamente");
             setIsSendingHabit(false);
          })
@@ -86,6 +94,7 @@ const Buttons = styled.div `
     .cancel-habit {
         font-size: 16px;
         color: #52B6FF;
+        cursor: pointer;
     }
     .create-habit {
         font-size: 16px;
@@ -98,5 +107,6 @@ const Buttons = styled.div `
         justify-content: center;
         align-items: center;
         margin-left: 23px;
+        cursor: pointer;
     }
 `

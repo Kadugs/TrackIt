@@ -20,6 +20,7 @@ export default function Header() {
 }
 
 const HeaderContainer = styled.div`
+    z-index: 1;
     font-family: 'Playball', cursive;
     position: fixed;
     top: 0;

@@ -8,6 +8,7 @@ import URL_API from '../../services/URL_API'
 export default function Habit(props) {
     const {loginInfos} = useContext(LoginContext);
     const {name, days, id} = props.item;
+    const {renderHabits} = props;
     const weekDays = [
         {weekDay: 'D', isSelected: false},
         {weekDay: 'S', isSelected: false},
@@ -22,13 +23,16 @@ export default function Habit(props) {
         })
 
         function deleteHabit() {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${loginInfos.token}`,
+            if (window.confirm("Tem certeza que deseja apagar o hábito?")) {
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${loginInfos.token}`,
+                    }
                 }
+                axios.delete(`${URL_API}/habits/${id}`, config)
+                 .then(() => renderHabits())
+                 .catch(() => console.log('erro ao deletar!')) 
             }
-            axios.delete(`${URL_API}/habits/${id}`, config)
-             .catch(() => console.log('erro ao deletar!'))
         }
 
     return (
