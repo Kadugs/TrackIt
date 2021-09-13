@@ -45,7 +45,7 @@ export default function Today() {
                     dailyPercentCompleted() === 0 ? 
                     'Nenhum hábito concluído ainda' 
                     : 
-                    `${dailyPercentCompleted()}% dos hábitos concluídos`
+                    `${dailyPercentCompleted().toFixed()}% dos hábitos concluídos`
                 }
             </p>
             {todayHabits.map(habit => (
