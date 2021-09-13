@@ -24,7 +24,7 @@ const LoginContainer = styled.div`
         padding-left: 10px;
     }
     .button-enter {
-        background-color: ${blueApp};
+        background-color: ${props => props.bgColor};
         color: white;
         display: flex;
         justify-content: center;

@@ -1,6 +1,6 @@
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import logo from "../../assets/logo.svg";
 import LoginContainer from "./LoginContainer";
 import URL_API from "../../services/URL_API";
@@ -11,38 +11,65 @@ import Loader from "react-loader-spinner";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isSendingLogin, setIsSending] = useState(false);
+  const [isSendingLogin, setIsSendingLogin] = useState(false);
+  const [loginScreen, setLoginScreen] = useState(false);
   const inputPlaceholder = [
     { title: "email", set: setEmail },
     { title: "senha", set: setPassword },
   ];
   const history = useHistory();
   const {setLoginInfos} = useContext(LoginContext);
+
   function sendLogin() {
-      setIsSending(true);
-      const body = {
-          email: email,
-          password: password,
-        };
-        axios
-        .post(`${URL_API}/auth/login`, body)
-        .then((res) => {
-          setLoginInfos(res.data);
-          setIsSending(false);
-          history.push("/hoje");
-      })
+    setIsSendingLogin(true);
+    const body = {
+      email: email,
+      password: password,
+    };
+    axios.post(`${URL_API}/auth/login`, body)
+    .then((res) => {
+      setLoginInfos(res.data);
+      setIsSendingLogin(false);
+      localStorage.setItem('@loginInfos', JSON.stringify(res.data) );
+      history.push("/hoje");
+    })
       .catch((error) => {
         console.log(error);
-        setIsSending(false);
+        setIsSendingLogin(false);
         alert("Erro! Verifique os dados e tente novamente");
       });
   }
+  useEffect(() => {
+    if(localStorage.getItem('@loginInfos')) {
+      const loginInfos = JSON.parse(localStorage.getItem('@loginInfos'));
+      console.log(loginInfos);
+      setLoginInfos(loginInfos);
+      const body = {
+        email: loginInfos.email,
+        password: loginInfos.password,
+      };
+      axios.post(`${URL_API}/auth/login`, body)
+      .then((res) => {
+        setLoginInfos(res.data);
+        localStorage.setItem('@loginInfos', JSON.stringify(res.data));
+        history.push("/hoje");
+      })
+        .catch((error) => {
+          setLoginScreen(true)
+        });
+    }
+  }, []);
 
+  if(!loginScreen && localStorage.getItem('@loginInfos')) {
+    return (<p></p>);
+  }
+  
   return (
-    <LoginContainer>
+    <LoginContainer bgColor={isSendingLogin ? '#86CCFF' : '#52B6FF'}>
       <img src={logo} alt="" />
       {inputPlaceholder.map((item, index) => (
         <input
+        
           type={item.title === 'senha' ? 'password' : 'text'}
           placeholder={item.title}
           onChange={(e) => item.set(e.target.value)}

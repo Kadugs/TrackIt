@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import PercentContext from "../contexts/PercentContext";
+import "react-circular-progressbar/dist/styles.css";
 
-let percentage = 66;
 export default function Footer() {
+    const { percent } = useContext(PercentContext)
     const location = useLocation().pathname;
     if(location === '/' || location === '/cadastro') {
         return (
@@ -19,7 +21,7 @@ export default function Footer() {
             </Link>
             <Link to ="/hoje" className="button-today">
                 <CircularProgressbar
-                    value={percentage}
+                    value={percent}
                     text='Hoje'
                     background
                     backgroundPadding={6}
@@ -39,6 +41,7 @@ export default function Footer() {
 }
 
 const ContainerFooter = styled.div `
+    z-index: 1;
     position: fixed;
     display: flex;
     bottom: 0;
@@ -56,9 +59,6 @@ const ContainerFooter = styled.div `
         width: 90px;
         height: 90px;
         color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         margin-bottom: 40px;
         text-decoration: none;
     }
