@@ -3,25 +3,29 @@ import {IoIosCheckbox} from 'react-icons/io';
 import axios from 'axios';
 import URL_API from '../../services/URL_API'
 import LoginContext from '../../contexts/LoginContext'
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 
 export default function TodayHabit(props) {
     const {id, name, done, currentSequence, highestSequence} = props.habit;
     const {loginInfos} = useContext(LoginContext);
+    const [click, setClick] = useState(done);
     const config = {
         headers: {
             Authorization: `Bearer ${loginInfos.token}`,
         }
     }
     function habitDone() {
-        console.log(config);
+        setClick(!done);
         axios.post(`${URL_API}/habits/${id}/${done ? 'uncheck' : 'check'}`, id, config)
-         .then(() => props.renderTodayHabits())
+         .then(() => {
+             if(click !== done) setClick(done);
+             props.renderTodayHabits()
+         })
          .catch(err => console.log(err));
     }
 
     return(
-        <ContainerTodayHabit enabled={done} record={currentSequence === highestSequence && currentSequence !== 0}>
+        <ContainerTodayHabit enabled={click} record={currentSequence === highestSequence && currentSequence !== 0}>
             <div className="habit-info">
                 <p>{name}</p>
                 <p>Sequência atual: <span className="current-sequence">

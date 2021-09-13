@@ -42,7 +42,6 @@ export default function Login() {
   useEffect(() => {
     if(localStorage.getItem('@loginInfos')) {
       const loginInfos = JSON.parse(localStorage.getItem('@loginInfos'));
-      console.log(loginInfos);
       setLoginInfos(loginInfos);
       const body = {
         email: loginInfos.email,
