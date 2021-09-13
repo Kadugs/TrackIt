@@ -69,6 +69,7 @@ export default function Login() {
       <img src={logo} alt="" />
       {inputPlaceholder.map((item, index) => (
         <input
+        
           type={item.title === 'senha' ? 'password' : 'text'}
           placeholder={item.title}
           onChange={(e) => item.set(e.target.value)}
