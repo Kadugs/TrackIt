@@ -18,9 +18,7 @@ export default function Habit(props) {
         {weekDay: 'S', isSelected: false},
         {weekDay: 'S', isSelected: false},
     ];
-        days.map(item => {
-            weekDays[item - 1].isSelected = true;
-        })
+        days.map(item => weekDays[item].isSelected = true)
 
         function deleteHabit() {
             if (window.confirm("Tem certeza que deseja apagar o hábito?")) {
@@ -43,7 +41,7 @@ export default function Habit(props) {
                     <div key={index} className={day.isSelected === true ? 'day enabled' : 'day disabled'}>{day.weekDay}</div>
                     ))}
             </div>
-            <img src={trash} className="trash-icon" onClick={deleteHabit}/>
+            <img src={trash} className="trash-icon" onClick={deleteHabit} alt="alt-text"/>
         </ContainerHabit>
     );
 }

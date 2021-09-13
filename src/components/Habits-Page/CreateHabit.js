@@ -63,8 +63,8 @@ export default function CreateHabit(
                         onClick={isSendingHabit ? 
                             undefined 
                             : 
-                            () => setSelectedDays([...selectedDays, index + 1])}
-                        className={selectedDays.includes(index + 1) ? 'day enabled' : 'day disabled'}>{day}
+                            () => setSelectedDays([...selectedDays, index])}
+                        className={selectedDays.includes(index) ? 'day enabled' : 'day disabled'}>{day}
                     </div>
                     ))}
             </div>

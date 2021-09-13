@@ -1,16 +1,32 @@
 import styled from 'styled-components';
+import {IoIosCheckbox} from 'react-icons/io';
+import axios from 'axios';
+import URL_API from '../../services/URL_API'
+import LoginContext from '../../contexts/LoginContext'
+import {useContext} from 'react';
 
+export default function TodayHabit(props) {
+    const {id, name, done, currentSequence, highestSequence} = props.habit;
+    const {loginInfos} = useContext(LoginContext);
+    function habitDone() {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${loginInfos.token}`,
+            }
+        }
+            axios.post(`${URL_API}/habits/${id}/${done ? 'uncheck' : 'check'}`, config)
+             .then(res => console.log(res))
+             .catch(err => console.error(err))
+    }
 
-export default function TodayHabit() {
-    let check = false;
     return(
-        <ContainerTodayHabit enabled={check} >
+        <ContainerTodayHabit enabled={done} >
             <div className="habit-info">
-                <p>aloaloa aloalo</p>
-                <p>Sequência atual: <span className="sequence-days">aloalaoalo</span></p>
-                <p>Seu recorde: <span>aloasdloa alao</span> </p>
+                <p>{name}</p>
+                <p>Sequência atual: <span className="sequence-days">{currentSequence}</span></p>
+                <p>Seu recorde: <span>{highestSequence}</span> </p>
             </div>
-            <ion-icon name="checkbox" ></ion-icon>
+            <IoIosCheckbox className="check-box" onClick={habitDone}/>
         </ContainerTodayHabit>
     );
 }
@@ -34,7 +50,7 @@ const ContainerTodayHabit = styled.div`
     .habit-info :nth-child(3) {
        font-size: 13px; 
     } 
-   ion-icon {
+   .check-box {
         font-size: 70px;
         color: ${props => props.enabled ? '#8FC549' : '#EBEBEB'};
     }
